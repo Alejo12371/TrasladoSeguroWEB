@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using TrasladoSeguroWEB.Data;
+
 namespace TrasladoSeguroWEB
 {
     public class Program
@@ -8,6 +11,10 @@ namespace TrasladoSeguroWEB
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+
+            builder.Services.AddDbContext<TrasladoSeguroContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("TrasladoSeguroDB"))
+            );
 
             var app = builder.Build();
 
